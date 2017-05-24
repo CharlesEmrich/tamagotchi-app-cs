@@ -1,3 +1,4 @@
+using System;
 using Nancy;
 using TamagotchiApp.Objects;
 using System.Collections.Generic;
@@ -15,11 +16,20 @@ namespace TamagotchiApp
         Tamagotchi newTama = new Tamagotchi(Request.Form["tama-name"]);
         return View["index.cshtml", Tamagotchi.GetAll()];
       };
-      Post["tamagotchi/pass-time"] = _ => {
+      Post["/tamagotchi/pass-time"] = _ => {
         Tamagotchi.PassTime();
         foreach(Tamagotchi creature in Tamagotchi.GetAll())
         {
           creature.isDead();
+          creature.SetVerbed(false);
+        }
+        return View["index.cshtml", Tamagotchi.GetAll()];
+      };
+      Get["/tamagotchi/{id}/add/{property}"] = parameters => {
+        Console.WriteLine("Ping!");
+        Tamagotchi targetCreature = Tamagotchi.Find(parameters.id);
+        if (parameters.property == "food") {
+          targetCreature.SetFood(targetCreature.GetFood() + 3);
         }
         return View["index.cshtml", Tamagotchi.GetAll()];
       };

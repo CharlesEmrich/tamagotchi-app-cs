@@ -33,7 +33,7 @@
           </div>
           <div class="panel-body">
             @if(creature.isDead()) {
-              <p>R.I.P. - @creature.getName() has died.</p>
+              <p>R.I.P. - @creature.GetName() has died.</p>
             } else {
               <div class="row">
                 <div class="col-xs-4">
@@ -57,13 +57,15 @@
               </div>
             }
           </div>
-          <div class="panel-footer">
-            <div class="btn-group">
-              <button type="button" class="btn btn-default">Feed @creature.GetName()</button>
-              <button type="button" class="btn btn-default">Put @creature.GetName() to bed</button>
-              <button type="button" class="btn btn-default">Give @creature.GetName() attention</button>
+          @if(!creature.isDead() && !creature.GetVerbed()) {
+            <div class="panel-footer">
+              <form class="btn-group">
+                <button type="button" class="btn btn-default"><a href="/tamagotchi/@creature.GetId()/add/food">Feed @creature.GetName()</a></button>
+                <button type="button" class="btn btn-default">Put @creature.GetName() to bed</button>
+                <button type="button" class="btn btn-default">Give @creature.GetName() attention</button>
+              </form>
             </div>
-          </div>
+          }
         </div>
       }
       </ul>

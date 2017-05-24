@@ -11,6 +11,7 @@ namespace TamagotchiApp.Objects
     private int    _sleep; //0-10. Where 0 is empty and 10 is full.
     private int    _attention; //0-10. Where 0 is empty and 10 is full.
     private bool   _dead;
+    private bool   _verbed;
     private static List<Tamagotchi> _instances = new List<Tamagotchi>{};
 
     public Tamagotchi(string name)
@@ -23,6 +24,7 @@ namespace TamagotchiApp.Objects
       _sleep     = rnd.Next(1,10);
       _attention = rnd.Next(1,10);
       _dead      = false;
+      _verbed    = false;
 
       _instances.Add(this);
     }
@@ -45,7 +47,12 @@ namespace TamagotchiApp.Objects
     }
     public void SetFood(int newFood)
     {
-      _food = newFood;
+      if (newFood > 10) {
+        _food = 10;
+      } else {
+        _food = newFood;
+      }
+      this.SetVerbed(true);
     }
     public int GetSleep()
     {
@@ -54,6 +61,7 @@ namespace TamagotchiApp.Objects
     public void SetSleep(int newSleep)
     {
       _sleep = newSleep;
+      this.SetVerbed(true);
     }
     public int GetAttention()
     {
@@ -62,7 +70,17 @@ namespace TamagotchiApp.Objects
     public void SetAttention(int newAttention)
     {
       _attention = newAttention;
+      this.SetVerbed(true);
     }
+    public bool GetVerbed()
+    {
+      return _verbed;
+    }
+    public void SetVerbed(bool newVerbed)
+    {
+      _verbed = newVerbed;
+    }
+
     public bool isDead()
     {
       if(this._food == 0 || this._sleep == 0 || this._attention == 0)
