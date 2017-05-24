@@ -25,8 +25,7 @@ namespace TamagotchiApp
         }
         return View["index.cshtml", Tamagotchi.GetAll()];
       };
-      Get["/tamagotchi/{id}/add/{property}"] = parameters => {
-        Console.WriteLine("Ping!");
+      Post["/tamagotchi/{id}/increment/{property}"] = parameters => {
         Tamagotchi targetCreature = Tamagotchi.Find(parameters.id);
         if (parameters.property == "food") {
           targetCreature.SetFood(targetCreature.GetFood() + 3);

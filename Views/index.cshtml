@@ -59,8 +59,9 @@
           </div>
           @if(!creature.isDead() && !creature.GetVerbed()) {
             <div class="panel-footer">
-              <form class="btn-group">
-                <button type="button" class="btn btn-default"><a href="/tamagotchi/@creature.GetId()/add/food">Feed @creature.GetName()</a></button>
+              <form class="btn-group" method="post">
+                <input type="hidden" name="creature-id" value="@creature.GetId()">
+                <button type="submit" formaction="/tamagotchi/@creature.GetId()/increment/food" class="btn btn-default">Feed @creature.GetName()</button>
                 <button type="button" class="btn btn-default">Put @creature.GetName() to bed</button>
                 <button type="button" class="btn btn-default">Give @creature.GetName() attention</button>
               </form>
