@@ -30,6 +30,12 @@ namespace TamagotchiApp
         if (parameters.property == "food") {
           targetCreature.SetFood(targetCreature.GetFood() + 3);
         }
+        if (parameters.property == "sleep") {
+          targetCreature.SetSleep(targetCreature.GetSleep() + 3);
+        }
+        if (parameters.property == "attention") {
+          targetCreature.SetAttention(targetCreature.GetAttention() + 3);
+        }
         return View["index.cshtml", Tamagotchi.GetAll()];
       };
     }

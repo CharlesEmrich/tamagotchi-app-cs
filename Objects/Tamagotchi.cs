@@ -60,7 +60,11 @@ namespace TamagotchiApp.Objects
     }
     public void SetSleep(int newSleep)
     {
+      if (newSleep > 10) {
+      _sleep = 10;
+      } else {
       _sleep = newSleep;
+      }
       this.SetVerbed(true);
     }
     public int GetAttention()
@@ -69,7 +73,11 @@ namespace TamagotchiApp.Objects
     }
     public void SetAttention(int newAttention)
     {
+      if (newAttention > 10) {
+      _attention = 10;
+      } else {
       _attention = newAttention;
+      }
       this.SetVerbed(true);
     }
     public bool GetVerbed()

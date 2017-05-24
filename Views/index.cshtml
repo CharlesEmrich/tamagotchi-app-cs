@@ -62,8 +62,8 @@
               <form class="btn-group" method="post">
                 <input type="hidden" name="creature-id" value="@creature.GetId()">
                 <button type="submit" formaction="/tamagotchi/@creature.GetId()/increment/food" class="btn btn-default">Feed @creature.GetName()</button>
-                <button type="button" class="btn btn-default">Put @creature.GetName() to bed</button>
-                <button type="button" class="btn btn-default">Give @creature.GetName() attention</button>
+                <button type="submit" formaction="/tamagotchi/@creature.GetId()/increment/sleep" class="btn btn-default">Put @creature.GetName() to bed</button>
+                <button type="submit" formaction="/tamagotchi/@creature.GetId()/increment/attention" class="btn btn-default">Give @creature.GetName() attention</button>
               </form>
             </div>
           }
