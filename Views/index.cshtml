@@ -1,0 +1,74 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+<div class="row">
+  <div class="col-md-2">
+    <div class="btn-group-vertical">
+      <form action="/tamagotchi/new" method="post">
+        <div class="form-group">
+          <label class="sr-only" for="tama-name">Name</label>
+          <div class="input-group">
+            <div class="input-group-addon">Name:</div>
+            <input type="text" class="form-control" id="tama-name" name="tama-name" placeholder="George">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default">Create a Friend</button>
+      </form>
+      @if(Model.Count > 0){
+        <form action="/tamagotchi/pass-time" method="post">
+          <button type="submit" class="btn btn-success">Pass Time</button>
+        </form>
+      }
+    </div>
+  </div>
+  <div class="col-md-10">
+    @if (Model.Count > 0) {
+      <ul>
+      @foreach(var creature in Model)
+      {
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">@creature.GetName()</h3>
+          </div>
+          <div class="panel-body">
+            @if(creature.isDead()) {
+              <p>R.I.P. - @creature.getName() has died.</p>
+            } else {
+              <div class="row">
+                <div class="col-xs-4">
+                  <div class="input-group">
+                    <div class="input-group-addon">Food:</div>
+                    <input type="text" class="form-control" value="@creature.GetFood()" disabled>
+                  </div>
+                </div>
+                <div class="col-xs-4">
+                  <div class="input-group">
+                    <div class="input-group-addon">Sleep:</div>
+                    <input type="text" class="form-control" value="@creature.GetSleep()" disabled>
+                  </div>
+                </div>
+                <div class="col-xs-4">
+                  <div class="input-group">
+                    <div class="input-group-addon">Attention:</div>
+                    <input type="text" class="form-control" value="@creature.GetAttention()" disabled>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+          <div class="panel-footer">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default">Feed @creature.GetName()</button>
+              <button type="button" class="btn btn-default">Put @creature.GetName() to bed</button>
+              <button type="button" class="btn btn-default">Give @creature.GetName() attention</button>
+            </div>
+          </div>
+        </div>
+      }
+      </ul>
+    } else {
+      <h3>To make your first creature, enter a name and click "Create a Friend."</h3>
+    }
+  </div>
+</div>
